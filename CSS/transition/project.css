@@ -1,0 +1,41 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    height: 100vh;
+    background-color: black;
+    /* position: relative; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box{
+    height: 200px;
+    width: 200px;
+    background-color: rgb(234, 234, 24);
+    /* position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); */
+    text-align: center;
+
+    animation-name: moving;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    border-radius: 50%;
+    box-shadow: 0 0 10px 20px red;
+}
+
+@keyframes moving {
+    from {
+        transform:  rotate(0deg)  translateX(200px) rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg) translateX(200px) rotate(-360deg) ;
+    }
+}

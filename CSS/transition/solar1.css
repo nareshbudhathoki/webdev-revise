@@ -1,0 +1,135 @@
+/* ---------- Reset ---------- */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* ---------- Container ---------- */
+.container {
+    background-color: black;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ---------- Solar System Canvas ---------- */
+.box {
+    position: relative;
+    width: 90vmin;
+    height: 90vmin;
+    border-radius: 50%;
+}
+
+/* ---------- Sun ---------- */
+.sun {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    background-color: #FDB813;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* ---------- Rotator Wrapper ---------- */
+.rotator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    transform-origin: center;
+    animation: orbit linear infinite;
+}
+
+/* ---------- Orbit Animation ---------- */
+@keyframes orbit {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* ---------- Planet Base ---------- */
+.box1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    transform: translateX(var(--radius)) translateY(-50%);
+}
+
+/* ---------- Planets ---------- */
+
+/* Mercury */
+.mercury {
+    width: 6px;
+    height: 6px;
+    background-color: #b1b1b1;
+    --radius: 60px;
+}
+.mercury-rotator { animation-duration: 5s; }
+
+/* Venus */
+.venus {
+    width: 9px;
+    height: 9px;
+    background-color: #e6c08f;
+    --radius: 90px;
+}
+.venus-rotator { animation-duration: 12s; }
+
+/* Earth */
+.earth {
+    width: 10px;
+    height: 10px;
+    background-color: #2a6bdc;
+    --radius: 120px;
+}
+.earth-rotator { animation-duration: 18s; }
+
+/* Mars */
+.mars {
+    width: 7px;
+    height: 7px;
+    background-color: #c1440e;
+    --radius: 150px;
+}
+.mars-rotator { animation-duration: 24s; }
+
+/* Jupiter */
+.jupiter {
+    width: 30px;
+    height: 30px;
+    background-color: #d8b26e;
+    --radius: 200px;
+}
+.jupiter-rotator { animation-duration: 36s; }
+
+/* Saturn */
+.saturn {
+    width: 24px;
+    height: 24px;
+    background-color: #f4d47c;
+    --radius: 250px;
+}
+.saturn-rotator { animation-duration: 48s; }
+
+/* Uranus */
+.uranus {
+    width: 15px;
+    height: 15px;
+    background-color: #7fffd4;
+    --radius: 300px;
+}
+.uranus-rotator { animation-duration: 60s; }
+
+/* Neptune */
+.neptune {
+    width: 14px;
+    height: 14px;
+    background-color: #4169e1;
+    --radius: 340px;
+}
+.neptune-rotator { animation-duration: 72s; }

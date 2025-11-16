@@ -1,0 +1,105 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    min-height: 100vh;
+    background-color: white;
+    color: black;
+    font-size: 30px;
+}
+
+.container{
+    background-color: black;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 1fr;
+    height: 500px;
+    width: 900px;
+    gap: 10px;
+    padding: 100px;
+}
+
+.one{
+    display: grid;
+    background-color: black;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
+}
+
+.a{
+    background-color: brown;
+}
+.b{
+    background-color: blue;
+}
+
+.two{
+display: grid;
+gap: 10px;
+grid-template-columns: 1fr;
+grid-template-rows: 1fr 3fr;
+}
+
+.sone{
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    grid-template-rows: 1fr;
+    gap: 10px;
+}
+
+.a1{
+    background-color: skyblue;
+}
+.b1{
+    background-color: rgb(165, 165, 38);
+}
+
+.stwo{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 10px;
+}
+
+.ssecond{
+    background-color: brown;
+}
+
+.sfirst{
+    display: grid;
+    gap:10px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1.2fr 1fr;
+}
+
+.gtop{
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    grid-template-rows: 1fr;
+    gap: 10px;
+}
+
+.gleft{
+    background-color: rgb(215, 148, 67);
+}
+.gright{
+    background-color: whitesmoke;
+}
+.gbelow{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 10px;
+}
+
+.sleft{
+    background-color: brown;
+}
+
+.sright{
+    background-color: skyblue;
+}

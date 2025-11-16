@@ -1,0 +1,38 @@
+.container{
+    background-color: aqua;
+    height: 500px;
+    width: 500px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+/* Justify content: Main axis ko lagi use hunx and ye main axis flex direction decide garx */
+/* align items: cross axis ko around kam garx */
+.box{
+    height: 50px;
+    width: 50px;
+    margin: 10px;
+}
+
+.first{
+    flex-basis: 100px;
+    background-color: rgb(4, 60, 41);
+}
+
+/* flex basis increase the length of the items according to the main axis and override the iitial length */
+.second{
+    background-color: blueviolet;
+    flex-grow: 1;
+}
+/* flex grow took the remaining space according to the remaining spaces */
+
+.third{
+    background-color: brown;
+}
+.fourth{
+    background-color: darkgoldenrod;
+    flex-shrink: 1;
+    align-self: flex-end;
+}
+/* flex shrink helps to shrink the item in ratio to the other items when there is no space */

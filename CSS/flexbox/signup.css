@@ -1,0 +1,164 @@
+/* -------------------------------
+   🌟 Signup Form Styles
+---------------------------------*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+}
+
+/* Container */
+.container {
+    background: #fff;
+    padding: 40px 35px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Header */
+.form-header {
+    margin-bottom: 25px;
+}
+
+.form-header h1 {
+    color: #2575fc;
+    font-size: 28px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 8px;
+}
+
+.form-header h1::after {
+    content: "";
+    position: absolute;
+    width: 60%;
+    height: 3px;
+    background: linear-gradient(90deg, #6a11cb, #2575fc);
+    bottom: 0;
+    left: 20%;
+    border-radius: 2px;
+}
+
+.form-header p {
+    color: #666;
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+/* Input Fields */
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 18px;
+    background: #f1f1f1;
+    border-radius: 8px;
+    padding: 0 10px;
+    border: 1.5px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.input-group:focus-within {
+    border-color: #2575fc;
+    background: #fff;
+    box-shadow: 0 0 6px rgba(37, 117, 252, 0.4);
+}
+
+.input-group label {
+    color: #666;
+    font-size: 16px;
+    padding: 0 8px;
+}
+
+.input-group input {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    background: transparent;
+    font-size: 15px;
+    outline: none;
+}
+
+/* Policy Section */
+.policy {
+    text-align: left;
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.policy a {
+    color: #2575fc;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.policy a:hover {
+    text-decoration: underline;
+}
+
+/* Button */
+.btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #2575fc, #6a11cb);
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(37, 117, 252, 0.4);
+}
+
+/* Login redirect text */
+.login-text {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #444;
+}
+
+.login-text a {
+    color: #2575fc;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.login-text a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .container {
+        padding: 30px 20px;
+    }
+
+    .form-header h1 {
+        font-size: 24px;
+    }
+
+    .btn {
+        font-size: 15px;
+    }
+}

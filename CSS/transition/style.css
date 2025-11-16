@@ -1,0 +1,50 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    height: 100vh;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    perspective: 900px;
+}
+
+.box{
+    height: 100px;
+    width: 100px;
+    background-color: blueviolet;
+    cursor: pointer;
+    /* transition-property: all;
+    transition-duration: 4s;
+    transition-timing-function: ease-in-out;
+    transition-delay: 1s; */
+    animation-name: rotat;
+    color: white;
+    font-size: 20px;
+    animation-iteration-count: 2;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+}
+
+@keyframes rotat {
+    from{
+        transform: rotateY(0deg);
+    }
+    to{
+        transform: rotateY(360deg);
+    }
+}
+
+/* .box:hover{
+    background-color: brown;
+    /* width: 250px; */
+    /* transform: scale(2); */
+    /* transform: translate(100px, 200px); */
+    /* transform: translateZ(200px); */
+    /* transform: rotate(60deg); */
+/* }  */

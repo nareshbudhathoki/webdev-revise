@@ -1,0 +1,27 @@
+<style>
+    .saturn {
+    width: 24px;
+    height: 24px;
+    background-color: #f4d47c;
+    border-radius: 50%;
+    position: relative; /* required for pseudo-element */
+}
+
+/* Ring */
+.saturn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60px;      /* ring width */
+    height: 10px;     /* ring thickness */
+    border: 3px solid rgba(200,160,100,0.6); /* ring color */
+    border-radius: 50%;
+    transform: translate(-50%, -50%) rotateX(70deg); /* tilt the ring */
+    box-shadow: 0 0 10px rgba(200,160,100,0.2);     /* soft glow */
+}
+
+</style>
+<div class="rotator saturn-rotator">
+    <div class="box1 saturn"></div>
+</div>

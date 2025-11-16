@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: rgb(31, 30, 30);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .container {
+    width: 90vmin;
+    height: 90vmin;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    background-color: cornflowerblue;
+  }
+  
+  .white {
+    background-color: white;
+  }
+  
+  .brown {
+    background-color: brown;
+  }
+  

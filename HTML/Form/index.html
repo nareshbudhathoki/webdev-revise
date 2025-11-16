@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>HTML Form</h1>
+    <!-- Here we learn about the HTML form -->
+     <form action="">
+        <label for="name">Name:</label> <br>
+        <input type="text" id="name" placeholder="enter your name" required name="uname">
+        <br>
+        <label for="fname">Father's Name:</label> <br>
+        <input type="text" placeholder="enter your father's name" name="fname">
+        <br>
+        <label for="age">Age:</label>
+        <br>
+        <input type="number" id="age" name="age" placeholder="enter your age" required>
+        <br>
+        <label for="password">Password:</label> 
+        <br>
+        <input type="password" id="password" placeholder="enter your password" name="password"> <br>
+
+        <label for="male">Male</label>
+        <input type="radio" value="male" id="male" name="gender">
+        <label for="female">Female</label>
+        <input type="radio" id="female" value="female" name="gender">
+        <label for="other">Other</label>
+        <input type="radio" id="other" value="other" name="gender">
+
+        <br>
+        <p>Select Subjects</p>
+        <label for="c++">C++</label>
+        <input type="checkbox" value="C++" name="subject" id="c++" >
+        <br>
+        <label for="java">Java</label>
+        <input type="checkbox" value="Java" name="subject" id="java">
+        <br>
+        <label for="javaScript">JavaScript</label>
+        <input type="checkbox" value="JavaScript" name="subject" id="javaScript">
+
+        <br>
+        <button type="submit">submit</button>
+     </form>
+</body>
+</html>

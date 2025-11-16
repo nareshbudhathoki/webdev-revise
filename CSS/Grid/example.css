@@ -1,0 +1,38 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: bisque;
+    color: black;
+    font-size: 40px;
+}
+
+.container{
+    display: grid;
+    height: 700px;
+    width: 700px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 20px;
+    padding: 10px;
+}
+
+.box{
+    background-color: blueviolet;
+}
+
+.first{
+    grid-row:1/4;
+}
+
+.second{
+    grid-column: 2/4;
+}
+
+.six{
+    grid-row: 2/4;
+    grid-column: 4/5;
+}

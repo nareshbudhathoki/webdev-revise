@@ -1,0 +1,100 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    background-color: black;
+    height: 100vh;
+    padding: 10px;
+}
+
+.box{
+    height: 90vmin;
+    width: 90vmin;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation-name: moving;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    border-radius: 50%;
+
+    gap: 10px;
+
+}
+
+@keyframes moving{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+.box1{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transform: translate(30px);
+
+}
+
+.sun{
+    height: 100px;
+    width: 100px;
+    background-color: #FDB813;
+    border-radius: 50%;
+
+}
+
+.v{
+    width: 30px;
+    height: 30px;
+    background-color: #e6c08f;
+    border-radius: 50%;
+    transform: rotate(120deg);
+}
+.m{
+    width: 25px;
+    height: 25px;
+    background-color: #7fffd4;
+    border-radius: 50%;
+    transform: translate(20px);
+    transform: rotate(270deg);
+
+
+
+}
+.e{
+    width: 20px;
+    height: 20px;
+    background-color: #2a6bdc;
+    border-radius: 50%;
+}
+.s{
+    width: 34px;
+    height: 34px;
+    background-color: #f4d47c;
+    border-radius: 50%;
+}
+.j{
+    width: 40px;
+    height: 40px;
+    background-color: #d8b26e;
+    border-radius: 50%;
+}
+.mr{
+    width: 24px;
+    height: 24px;
+    background-color: #4169e1;
+    border-radius: 50%;
+}
