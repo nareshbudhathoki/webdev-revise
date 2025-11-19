@@ -83,3 +83,45 @@
 //     console.log(i);
 //     i++;
 // }while(i<12);
+
+//conditions
+
+// let age = 23;
+// if(age>18){
+//     console.log("your are eligible for vote");
+// }else{
+//     console.log("You are not eligible for vote")
+// }
+
+//kid young and old
+
+// let age = 3;
+
+// if(age<18){
+//     console.log("your are a kid");
+// }else if(age<=60){
+//     console.log("you are youth ");
+// }
+// else{
+//     console.log("you are a old man")
+// }
+
+//logical operator
+
+// &&, ||
+
+console.log(true && true); // true
+console.log(false && true); //false
+console.log(true && false); //false
+console.log(false && false); //false
+console.log("jo" && "he")
+
+
+// ||
+console.log(true||true); // true
+console.log(false||true); //true
+console.log(true||false); //true
+console.log(false || false); //false
+console.log("jo" || "he")
+
+// & | operator
