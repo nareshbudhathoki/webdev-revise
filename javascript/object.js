@@ -279,17 +279,18 @@
 
 // // in js keys can be string and symbol
 
-const symb = Symbol("id");
+// const symb = Symbol("id");
 
-// console.log(symb);
-
-
-//symbol in js
-const user ={
-    name:"Naresh",
-    age:34,
-    [symb] :"unique",
-}
+// // console.log(symb);
 
 
-console.log(user[symb]);
+// //symbol in js
+// const user ={
+//     name:"Naresh",
+//     age:34,
+//     [symb] :"unique",
+// }
+
+
+// console.log(user[symb]);
+
