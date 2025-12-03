@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astrology</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Astrology Insights</h1>
+        <form  id="astroForm" action="astroForm">
+
+            <label for="name">First Name:</label>
+            <br>
+            <input type="text" id="name" name="name" placeholder="enter your birth name" required>
+
+            <br> <br>
+            <label for="surname">Surname:</label>
+            <br>
+            <input type="text" id="surname" name="surname" required placeholder="enter your surname">
+
+            <br> <br>
+
+            <label for="day">Date of Birth (Day):</label>
+            <br>
+            <input type="number" id="day" name="day" min="1" max="32" required>
+            <br> <br>
+
+            <label for="month">Month:</label>
+            <br>
+            <input type="number" id="month" name="month" min="1" max="12" required>
+            <br> <br>
+
+            <label for="year">Year:</label>
+            <br>
+            <input type="number" id="year" name="year" min="1800" max="2025" required>
+            <br> <br>
+
+            <button type="submit">Get Insights</button>
+            <br> <br>
+
+
+        </form>
+
+        <div class="result" id="result"></div>
+    </div>
+    
+    <!-- linking javascript file -->
+     <script src="script.js"></script>
+</body>
+</html>

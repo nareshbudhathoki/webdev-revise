@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3-Page Random Quiz (Local Data)</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #eef1f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align to the top for better content flow */
+            min-height: 100vh;
+        }
+        .app-container {
+            width: 100%;
+            max-width: 700px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            box-sizing: border-box;
+        }
+
+        /* Header */
+        h1 {
+            color: #3f51b5;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 1.8em;
+        }
+        .subtitle {
+            text-align: center;
+            color: #616161;
+            margin-bottom: 25px;
+            font-size: 1em;
+        }
+
+        /* Status & Quiz Container */
+        #status-message {
+            text-align: center;
+            color: #ff9800;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+            display: none; /* Hide as Firebase is removed, but keep for consistency */
+        }
+        #quiz-container {
+            display: none;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+        .question-block {
+            background-color: #f7f7f7;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #e0e0e0;
+        }
+        .question-text {
+            font-weight: bold;
+            color: #424242;
+            margin-bottom: 10px;
+        }
+
+        /* Options */
+        .option-label {
+            display: block;
+            padding: 10px;
+            margin-bottom: 8px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.15s, border-color 0.15s;
+        }
+        .option-label:hover {
+            background-color: #e8eaf6;
+            border-color: #3f51b5;
+        }
+        /* Style for the radio button inside the label */
+        .option-label input[type="radio"] {
+            margin-right: 10px;
+            vertical-align: middle;
+            appearance: none;
+            border: 1px solid #999;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            position: relative;
+            top: -1px;
+        }
+        .option-label input[type="radio"]:checked {
+            background-color: #3f51b5;
+            border-color: #3f51b5;
+        }
+        .option-label input[type="radio"]:checked::before {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Navigation & Results */
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+        }
+        .navigation-buttons button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s, opacity 0.2s;
+        }
+        .navigation-buttons button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        #prev-button {
+            background-color: #bdbdbd;
+            color: #333;
+        }
+        #prev-button:not(:disabled):hover {
+            background-color: #9e9e9e;
+        }
+        #next-button, #submit-button, #retake-button {
+            background-color: #3f51b5;
+            color: #ffffff;
+        }
+        #next-button:not(:disabled):hover, #submit-button:not(:disabled):hover, #retake-button:hover {
+            background-color: #303f9f;
+        }
+        #submit-button {
+            width: 100%;
+            padding: 12px;
+            font-size: 1.1em;
+            margin-top: 15px;
+        }
+        .page-indicator {
+            text-align: center;
+            font-size: 0.9em;
+            color: #757575;
+            padding: 10px 0;
+            font-weight: 600;
+        }
+
+        /* Results */
+        #results-container {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            border: 2px solid #4caf50;
+            background-color: #e8f5e9;
+            border-radius: 8px;
+        }
+        .results-title {
+            color: #388e3c;
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+        #score-text {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #1b5e20;
+            margin-bottom: 10px;
+        }
+        #last-score {
+            color: #555;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+        }
+        #retake-button {
+            margin-top: 10px;
+            padding: 10px 25px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <h1>Knowledge Quiz</h1>
+        <p class="subtitle">Complete 3 pages of 4 random questions each (12 total).</p>
+
+        <!-- The main form container for FormData to work correctly -->
+        <form id="quiz-form">
+            <div id="quiz-container">
+                <!-- Questions will be injected here -->
+            </div>
+        </form>
+
+        <div id="page-controls" style="display: none;">
+            <div class="page-indicator">
+                Page <span id="current-page-display">1</span> of 3
+            </div>
+            <div class="navigation-buttons">
+                <button id="prev-button" onclick="prevPage()" disabled>Previous</button>
+                <button id="next-button" onclick="nextPage()">Next Page</button>
+            </div>
+            <button id="submit-button" onclick="submitQuiz()" style="display: none;">Submit Quiz & See Score</button>
+        </div>
+
+        <div id="results-container">
+            <h2 class="results-title">Quiz Complete!</h2>
+            <p id="score-text"></p>
+            <!-- Last score element is removed as local data is not persisted -->
+            <button id="retake-button" onclick="initializeQuiz()">Retake Quiz (New Questions)</button>
+        </div>
+    </div>
+
+    <script>
+        const QUESTIONS_PER_PAGE = 4;
+        const TOTAL_PAGES = 3;
+
+        // Quiz State
+        let selectedQuestions = []; // Array of 12 unique questions
+        let currentPage = 1;
+
+        // --- Question Pool Data (20 Questions) ---
+        const fullQuizQuestions = [
+            { q: "What is the capital of France?", options: ["Berlin", "Madrid", "Paris", "Rome"], a: "Paris" },
+            { q: "Which planet is known as the Red Planet?", options: ["Venus", "Mars", "Jupiter", "Saturn"], a: "Mars" },
+            { q: "What is 7 times 8?", options: ["54", "56", "64", "49"], a: "56" },
+            { q: "What is the largest ocean on Earth?", options: ["Atlantic", "Indian", "Arctic", "Pacific"], a: "Pacific" },
+            { q: "Who wrote 'To Kill a Mockingbird'?", options: ["F. Scott Fitzgerald", "Harper Lee", "Ernest Hemingway", "Jane Austen"], a: "Harper Lee" },
+            { q: "In which year did the Titanic sink?", options: ["1912", "1905", "1923", "1898"], a: "1912" },
+            { q: "What chemical element has the symbol 'O'?", options: ["Gold", "Oxygen", "Osmium", "Iron"], a: "Oxygen" },
+            { q: "How many continents are there?", options: ["5", "6", "7", "8"], a: "7" },
+            { q: "What is the fastest land animal?", options: ["Lion", "Cheetah", "Gazelle", "Tiger"], a: "Cheetah" },
+            { q: "What is the main ingredient of guacamole?", options: ["Tomato", "Avocado", "Chili", "Lime"], a: "Avocado" },
+            { q: "What is the currency of Japan?", options: ["Yuan", "Won", "Yen", "Ringgit"], a: "Yen" },
+            { q: "What is the square root of 81?", options: ["7", "8", "9", "11"], a: "9" },
+            { q: "Which gas do plants absorb from the atmosphere?", options: ["Oxygen", "Nitrogen", "Carbon Dioxide", "Hydrogen"], a: "Carbon Dioxide" },
+            { q: "What is the longest river in the world?", options: ["Amazon", "Nile", "Yangtze", "Mississippi"], a: "Nile" },
+            { q: "Who painted the Mona Lisa?", options: ["Van Gogh", "Picasso", "Da Vinci", "Monet"], a: "Da Vinci" },
+            { q: "What is the standard frequency for the electric grid in North America (in Hz)?", options: ["50", "60", "70", "100"], a: "60" },
+            { q: "How many sides does a hexagon have?", options: ["5", "6", "7", "8"], a: "6" },
+            { q: "What is the process by which plants make their food?", options: ["Respiration", "Digestion", "Photosynthesis", "Germination"], a: "Photosynthesis" },
+            { q: "Which body part is affected by glaucoma?", options: ["Ear", "Heart", "Eye", "Lungs"], a: "Eye" },
+            { q: "What is the smallest prime number?", options: ["0", "1", "2", "3"], a: "2" }
+        ];
+
+        // --- Core Quiz Logic ---
+
+        // Randomly select 12 unique questions and reset state
+        function initializeQuiz() {
+            // 1. Reset State
+            currentPage = 1;
+            document.getElementById('quiz-container').innerHTML = '';
+
+            // 2. Select 12 unique questions (4 questions * 3 pages)
+            const neededQuestions = QUESTIONS_PER_PAGE * TOTAL_PAGES;
+
+            // Use Fisher-Yates shuffle to ensure random, non-repeating questions
+            let shuffled = [...fullQuizQuestions];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            // selectedQuestions now holds 12 unique, random questions
+            selectedQuestions = shuffled.slice(0, neededQuestions);
+
+            // 3. Hide results, show quiz controls and quiz container
+            document.getElementById('results-container').style.display = 'none';
+            document.getElementById('quiz-container').style.display = 'block';
+            document.getElementById('page-controls').style.display = 'block';
+
+            // 4. Render the first page
+            renderQuizPage();
+        }
+        window.initializeQuiz = initializeQuiz; // Expose to window for retake button
+
+        function renderQuizPage() {
+            const container = document.getElementById('quiz-container');
+            const pageDisplay = document.getElementById('current-page-display');
+            const prevButton = document.getElementById('prev-button');
+            const nextButton = document.getElementById('next-button');
+            const submitButton = document.getElementById('submit-button');
+            const quizForm = document.getElementById('quiz-form');
+
+            // Determine which 4 questions to display
+            const startIndex = (currentPage - 1) * QUESTIONS_PER_PAGE;
+            const endIndex = startIndex + QUESTIONS_PER_PAGE;
+            const questionsForPage = selectedQuestions.slice(startIndex, endIndex);
+
+            // Temporarily store the state of the form inputs before clearing the container
+            // This ensures selections are remembered when navigating back and forth.
+            const formData = new FormData(quizForm);
+            let currentAnswers = {};
+            for (const [key, value] of formData.entries()) {
+                currentAnswers[key] = value;
+            }
+
+            container.innerHTML = ''; // Clear previous questions
+
+            questionsForPage.forEach((qData, qPageIndex) => {
+                // The global index is used as the radio button group name to ensure uniqueness across all 12 questions
+                const globalIndex = startIndex + qPageIndex;
+                const qElement = document.createElement('div');
+                qElement.className = 'question-block';
+
+                const inputName = `question-${globalIndex}`;
+
+                let optionsHtml = qData.options.map(option => {
+                    // Check if this option was previously selected in the form data
+                    const isChecked = currentAnswers[inputName] === option ? 'checked' : '';
+                    return `
+                        <label class="option-label">
+                            <input type="radio" name="${inputName}" value="${option}" ${isChecked}>
+                            <span>${option}</span>
+                        </label>
+                    `;
+                }).join('');
+
+                qElement.innerHTML = `
+                    <p class="question-text">Q${globalIndex + 1}: ${qData.q}</p>
+                    <div class="options-group">
+                        ${optionsHtml}
+                    </div>
+                `;
+                container.appendChild(qElement);
+            });
+
+            // Update UI elements
+            pageDisplay.textContent = currentPage;
+
+            prevButton.disabled = currentPage === 1;
+            nextButton.style.display = currentPage < TOTAL_PAGES ? 'block' : 'none';
+            submitButton.style.display = currentPage === TOTAL_PAGES ? 'block' : 'none';
+        }
+
+        // Navigate to the next page
+        window.nextPage = function() {
+            if (currentPage < TOTAL_PAGES) {
+                currentPage++;
+                renderQuizPage();
+            }
+        }
+
+        // Navigate to the previous page
+        window.prevPage = function() {
+            if (currentPage > 1) {
+                currentPage--;
+                renderQuizPage();
+            }
+        }
+
+        // Calculate score using FormData
+        window.submitQuiz = function() {
+            const quizForm = document.getElementById('quiz-form');
+            const formData = new FormData(quizForm);
+            let score = 0;
+            const totalQuestions = selectedQuestions.length;
+
+            // 1. Create a map of correct answers for quick lookup
+            const correctAnswersMap = selectedQuestions.reduce((map, qData, index) => {
+                map[`question-${index}`] = qData.a;
+                return map;
+            }, {});
+
+            // 2. Iterate through the FormData (which contains all selected radio buttons)
+            for (const [key, userAnswer] of formData.entries()) {
+                const correctAnswer = correctAnswersMap[key];
+
+                if (correctAnswer && userAnswer === correctAnswer) {
+                    score++;
+                }
+            }
+
+            // Display results
+            document.getElementById('score-text').textContent = `You scored ${score} out of ${totalQuestions} (${(score / totalQuestions * 100).toFixed(1)}%)!`;
+
+            // Hide quiz, show results
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('page-controls').style.display = 'none';
+            document.getElementById('results-container').style.display = 'block';
+        }
+
+        // Start the quiz when the page loads
+        document.addEventListener('DOMContentLoaded', initializeQuiz);
+    </script>
+
+</body>
+</html>
