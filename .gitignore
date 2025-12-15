@@ -1,3 +1,19 @@
-*.mp4
+# Node
+node_modules/
+
 *.mov
-*.avi
+ *.avi
+*.mp4
+# Build output
+dist/
+
+# Environment variables
+.env
+
+# OS files
+.DS_Store
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

@@ -1,0 +1,21 @@
+body{
+  background-color: rgb(183, 176, 176);
+  padding: 50px;
+}
+
+.block{
+  border: 2px solid black;
+  height: 100px;
+  width: 100px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  font-weight: 900;
+  color: red;
+}
+
+.row{
+  display: flex;
+}
