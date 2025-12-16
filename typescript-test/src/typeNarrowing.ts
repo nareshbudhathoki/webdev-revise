@@ -94,5 +94,21 @@ function serveOrder(item:ChaiOrder | string){
 
 //real life examples
 
-type MasalaChai = {type:"masala"; spicelevel:number};
-type GingerChai = {type:"ginger"; amount:number};
+type MasalaChai = {kind:"masala"; spicelevel:number};
+type GingerChai = {kind:"ginger"; amount:number};
+
+type Chai = MasalaChai | GingerChai;
+
+function brew(order:Chai){
+    if("spicelevel" in order){
+        return `Masala chai`
+    }
+
+    return `Ginger chai`
+}
+
+//unknown in js
+
+function isStringArray(arr:unknown): arr is string[]{
+    return Array.isArray(arr) && arr.every(x => typeof x === "string");
+}
