@@ -115,6 +115,6 @@ class ChaiMaker{
     }
 
     make(){
-        this.heater.heat
+        this.heater.heat();
     }
 }
