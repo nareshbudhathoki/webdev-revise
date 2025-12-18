@@ -1,0 +1,21 @@
+<svg width="420" height="120" viewBox="0 0 420 120" xmlns="http://www.w3.org/2000/svg">
+  <!-- Code Icon -->
+  <g transform="translate(30,30)">
+    <rect width="60" height="60" rx="12" fill="#22c55e"/>
+    <text x="30" y="40" text-anchor="middle"
+          font-size="32" font-family="monospace" fill="#0f172a">
+      &lt;/&gt;
+    </text>
+  </g>
+
+  <!-- Text -->
+  <text x="120" y="55" font-size="32" font-weight="700"
+        font-family="Inter, monospace" fill="#0f172a">
+    SourceNest
+  </text>
+
+  <text x="120" y="85" font-size="16"
+        font-family="Inter, monospace" fill="#475569">
+    coding lab
+  </text>
+</svg>
