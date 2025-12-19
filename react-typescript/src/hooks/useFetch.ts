@@ -21,4 +21,4 @@ function useFetch<T>(url:string): FetchState<T>{
 
 }
 
-export default FetchState;
+export default useFetch;
