@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import List from './components/List'
+import Clock from './components/Clock'
 
 function App() {
   return (
     <>
-    <List/>
+    <Clock></Clock>
     </>
   )
 }
