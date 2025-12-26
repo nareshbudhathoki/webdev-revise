@@ -1,5 +1,6 @@
 import { useState, useMemo, useCallback } from 'react';
 import Sum from './components/sum';
+import Post from './components/Post';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -44,6 +45,7 @@ function App() {
      <h3>Total Number of prime : {prime}</h3>
      <button onClick={handleHello}>Click</button>
      <Sum num={number}></Sum>
+     <Post value={{name:"Jenith", age:30}}></Post>
     </>
   )
 }
