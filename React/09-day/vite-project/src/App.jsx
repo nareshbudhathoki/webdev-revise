@@ -14,7 +14,7 @@ function App() {
 
   const handleHello = useCallback(()=>{
     console.log("Welcome to the Billionare Club", count);
-  }, [])
+  }, [number])
 
 // use memo remembers value across the re render
  const prime = useMemo(()=>{
@@ -36,6 +36,10 @@ function App() {
     setCount(count+1);
   }
 
+  const obj = useMemo(()=>{
+    return {name:"jenith", age:30}
+  },[]);
+
   return (
     <>
      <h1>Counter : {count}</h1>
@@ -45,7 +49,7 @@ function App() {
      <h3>Total Number of prime : {prime}</h3>
      <button onClick={handleHello}>Click</button>
      <Sum num={number}></Sum>
-     <Post value={{name:"Jenith", age:30}}></Post>
+     <Post value={obj}></Post>
     </>
   )
 }
