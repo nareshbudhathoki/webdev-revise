@@ -8,8 +8,10 @@ const formSchema = z.object(
         age: z.coerce.number().min(10, "Minimum age should be 10").max(200, "Maximum age should be 20"),
         password: z.string().min(8, "Minimum password length should be 8").max(15, "Maximum password length should be 15"),
         email: z.email("Email is invalid"),
-
-
+        confirm: z.string(),
+}).refine((data)=>data.password === data.confirm, {
+    message: "Passwords don't match",
+    path: ["confirm"],
 })
 
 function ZodForm(){
@@ -47,7 +49,8 @@ function ZodForm(){
             <div className="flex flex-col">
               <label htmlFor="second" className="text-gray-200 mb-2">Age:</label>
               <input 
-                id="second" 
+                id="second"
+                type="number"
                 {...register('age')}
                 className="px-4 py-2 rounded-lg bg-black/30 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition"
                 placeholder="Enter your age"
@@ -59,6 +62,7 @@ function ZodForm(){
               <label htmlFor="email" className="text-gray-200 mb-2">Email:</label>
               <input 
                 id="email" 
+                type="email"
                 {...register('email')}
                 className="px-4 py-2 rounded-lg bg-black/30 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition"
                 placeholder="Enter your Email"
@@ -77,8 +81,19 @@ function ZodForm(){
               />
             {errors.password && <span className="text-gray-200 mt-2 ">{errors.password.message}</span>}
             </div>
-            
 
+            <div className="flex flex-col">
+              <label htmlFor="fourth" className="text-gray-200 mb-2">Confirm Password:</label>
+              <input 
+                id="fourth" 
+                type="password"
+                {...register('confirm')}
+                className="px-4 py-2 rounded-lg bg-black/30 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition"
+                placeholder="Enter your password"
+              />
+            {errors.confirm && <span className="text-gray-200 mt-2 ">{errors.confirm.message}</span>}
+            </div>
+            
       
             <button 
               type="submit"
