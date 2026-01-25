@@ -1,8 +1,24 @@
 import {useForm} from "react-hook-form";
+import {zodResolver} from '@hookform/resolvers/zod';
+import {z} from 'zod';
+
+const formSchema = z.object(
+    {
+        name: z.string().min(3, "Minimum length should be 3").max(20, "Maximum length should be 20"),
+        age: z.coerce.number().min(10, "Minimum age should be 10").max(200, "Maximum age should be 20"),
+        password: z.string().min(8, "Minimum password length should be 8").max(15, "Maximum password length should be 15"),
+        email: z.email("Email is invalid"),
+
+
+})
 
 function ZodForm(){
 
-    const {register, handleSubmit, reset, formState:{errors}} = useForm();
+    const {register, handleSubmit, reset, formState:{errors}} = useForm(
+        {
+            resolver: zodResolver(formSchema)
+        }
+    );
 
     function submitForm(data, e){
         e.preventDefault();
@@ -36,7 +52,18 @@ function ZodForm(){
                 className="px-4 py-2 rounded-lg bg-black/30 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition"
                 placeholder="Enter your age"
               />
-            {errors.age && <span className="text-gray-200 ">{errors.age.message}</span>}
+            {errors.age && <span className="text-gray-200 mt-2">{errors.age.message}</span>}
+            </div>
+
+            <div className="flex flex-col">
+              <label htmlFor="email" className="text-gray-200 mb-2">Email:</label>
+              <input 
+                id="email" 
+                {...register('email')}
+                className="px-4 py-2 rounded-lg bg-black/30 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition"
+                placeholder="Enter your Email"
+              />
+            {errors.email && <span className="text-gray-200 mt-2">{errors.email.message}</span>}
             </div>
       
             <div className="flex flex-col">
@@ -48,8 +75,9 @@ function ZodForm(){
                 className="px-4 py-2 rounded-lg bg-black/30 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition"
                 placeholder="Enter your password"
               />
-            {errors.password && <span className="text-gray-200 ">{errors.password.message}</span>}
+            {errors.password && <span className="text-gray-200 mt-2 ">{errors.password.message}</span>}
             </div>
+            
 
       
             <button 
